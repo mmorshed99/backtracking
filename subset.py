@@ -46,3 +46,25 @@ class Solution:
             segment.append(A[i])
             o_list = mysubset(segment,i,o_list,A)
         return o_list
+ # another implementation ##
+def subsets(self, A):
+        A = sorted(A)
+        my_return_list = []
+        my_return_list.append([])
+        if len(A) == 0:
+            return my_return_list
+        def my_subset(curr_list,next_idx):
+            for idx in range(next_idx,len(A)):
+                next_list = curr_list[:]
+                next_list.append(A[idx])
+                my_return_list.append(next_list)
+                if idx == len(A) - 1:
+                    break
+                my_subset(next_list,idx+1)
+            return
+        for idx in range(len(A)):
+            my_return_list.append([A[idx]])
+            if idx == len(A) - 1:
+                break
+            my_subset([A[idx]],idx+1)
+        return my_return_list
